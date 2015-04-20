@@ -8,6 +8,7 @@
 $(function() {
     $('body').on('click', '.page-scroll a', function(event) {
         var $anchor = $(this);
+        window.history.replaceState({}, '', $anchor.attr('href'));
         $('html, body').stop().animate({
             scrollTop: $($anchor.attr('href')).offset().top
         }, 1500, 'easeInOutExpo');
