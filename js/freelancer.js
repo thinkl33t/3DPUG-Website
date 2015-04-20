@@ -14,6 +14,19 @@ $(function() {
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
+
+    $('header,section').waypoint({
+        handler: function(direction) {
+          var the_id = this.element.id;
+          if (direction=='up')
+            the_id = $(this.element).prev()[0].id;
+
+          $('.page-scroll').removeClass('active');
+          var $anchor = $('a[href="#' + the_id + '"]')
+          $anchor.parent().addClass('active');
+          window.history.replaceState({}, '', $anchor.attr('href'));
+        }
+      });
 });
 
 // Floating label headings for the contact form
